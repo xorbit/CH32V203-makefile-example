@@ -1,0 +1,48 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+
+    "version": "2.0.0",
+    "tasks": 
+    [
+        {
+            "label": "Build application",
+            "type": "shell",
+            "command": "make",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Build and flash application",
+            "type": "shell",
+            "command": "make flash",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "Start OpenOCD",
+            "type": "shell",
+            "command": "vendor/bin/openocd -f vendor/wch-riscv.cfg",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "isBackground": true
+        },
+        {
+            "label": "Terminate All Tasks",
+            "command": "echo ${input:terminate}",
+            "type": "shell",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "terminate",
+            "type": "command",
+            "command": "workbench.action.tasks.terminate",
+            "args": "terminateAll"
+        }        
+    ]
+}
